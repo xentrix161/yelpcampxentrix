@@ -52,9 +52,7 @@ app.use(mongoSanitize());
 const secret = process.env.SECRET || 'secret';
 
 const store = MongoDBStore.create({
-    client: mongoose.connection.getClient(),
-    collectionName: 'sessions',
-    mongoUrl: process.env.DB_URL,
+    mongoUrl: 'mongodb+srv://xentrix:MYFACE1@xentrix.b14gl.mongodb.net/yelpCamp?retryWrites=true&w=majority',
     secret: secret,
     touchAfter: 24 * 60 * 60 
 });
