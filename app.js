@@ -16,35 +16,14 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoDBStore = require('connect-mongo');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //ROUTES
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 //DATABASE
 // const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
-const dbUrl = process.env.DB_URL;
-mongoose.connect('mongodb+srv://xentrix:MYFACE1@xentrix.b14gl.mongodb.net/yelpCamp?retryWrites=true&w=majority', { 
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+mongoose.connect(dbUrl, { 
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -71,7 +50,7 @@ app.use(mongoSanitize());
 const secret = process.env.SECRET || 'secret';
 
 const store = MongoDBStore.create({
-    mongoUrl: 'mongodb+srv://xentrix:MYFACE1@xentrix.b14gl.mongodb.net/yelpCamp?retryWrites=true&w=majority',
+    mongoUrl: dbUrl,
     secret: secret,
     touchAfter: 24 * 60 * 60 
 });
