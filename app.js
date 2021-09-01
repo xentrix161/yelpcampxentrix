@@ -52,8 +52,10 @@ app.use(mongoSanitize());
 const secret = process.env.SECRET || 'secret';
 
 const store = MongoDBStore.create({
+    client: mongoose.connection.getClient(),
+    collectionName: 'sessions',
     mongoUrl: process.env.DB_URL,
-    secret,
+    secret: secret,
     touchAfter: 24 * 60 * 60 
 });
 
@@ -62,9 +64,9 @@ store.on("error", function(e) {
 });
 
 const sessionConfig = {
-    store,
+    store: store,
     name: 'session',
-    secret,
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
