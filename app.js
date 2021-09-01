@@ -16,6 +16,27 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoDBStore = require('connect-mongo');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //ROUTES
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
